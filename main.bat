@@ -222,9 +222,11 @@ IF not exist QuantumWeb goto :makenewacoinfo
 
 :makenewacoinfo
 title Info
-color 07
+color 06
 echo:
+echo ==========================================================================
 echo Looks like you don't have an account, we'll be setting one up right now :D
+echo ==========================================================================
 ping localhost -n 3 >nul
 goto :regaco
 
@@ -398,7 +400,13 @@ echo "Login attempt failed [Code#%random%]"
 echo --Username and Password incorrect
 echo --Failed to login
 pause>nul
-cls
+echo =====
+echo [1]Retry
+echo [2]Back
+set /p "loginerroropt=>"
+IF %loginerroropt%==1 goto :loginaco
+IF %loginerroropt%==2 goto :startmenu
+cls 
 goto :loginaco
 
 :lognameerror
@@ -407,10 +415,16 @@ color 04
 echo:
 echo User not found!
 echo "Login attempt failed [Code#%random%]"
-echo --Path directory not found
+echo --User not exist
 echo --User credential files not found
 pause>nul
-cls
+echo =====
+echo [1]Retry
+echo [2]Back
+set /p "loginerroropt=>"
+IF %loginerroropt%==1 goto :loginaco
+IF %loginerroropt%==2 goto :startmenu
+cls 
 goto :loginaco
 
 :zxpwsave
